@@ -1,5 +1,6 @@
 const API = chrome || browser
 
+console.log('test')
 API.scripting
   .registerContentScripts([{
     id: "session-script",
