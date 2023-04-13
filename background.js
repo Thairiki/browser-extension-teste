@@ -1,4 +1,16 @@
-// const API = chrome || browser
+const API = chrome || browser
+
+API.scripting
+  .registerContentScripts([{
+    id: "session-script",
+    js: ["/js/injectButton.js"],
+    persistAcrossSessions: false,
+    matches: ["*"],
+    runAt: "document_start",
+  }])
+  .then(() => console.log("registration complete"))
+  .catch((err) => console.warn("unexpected error", err))
+
 
 // API.runtime.onInstalled.addListener(() => {
 //   API.action.setBadgeText({
