@@ -1,12 +1,12 @@
 const API = chrome || browser
 
 console.log('test')
-API.scripting
+await API.scripting
   .registerContentScripts([{
     id: "session-script",
     js: ["/js/injectButton.js"],
     persistAcrossSessions: false,
-    matches: ["<all_urls>"],
+    matches: ["*://*/*"],
     runAt: "document_start",
   }])
   .then(() => console.log("registration complete"))
