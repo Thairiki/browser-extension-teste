@@ -1,6 +1,6 @@
 const API = chrome || browser
 
-await API.scripting
+API.scripting
   .registerContentScripts([{
     id: "session-script",
     js: ["/js/injectButton.js"],
@@ -10,6 +10,21 @@ await API.scripting
   }])
   .then(() => console.log("registration complete"))
   .catch((err) => console.warn("unexpected error", err))
+
+API.scripting
+.updateContentScripts([{
+  id: "session-script",
+  excludeMatches: ["*://admin.example.com/*"],
+}])
+.then(() => console.log("registration updated"))
+
+API.scripting
+  .getRegisteredContentScripts()
+  .then(scripts => console.log("registered content scripts", scripts))
+
+API.scripting
+  .unregisterContentScripts({ ids: ["session-script"] })
+  .then(() => console.log("un-registration complete"));
 
 
 // API.runtime.onInstalled.addListener(() => {
