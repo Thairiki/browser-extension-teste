@@ -1,11 +1,4 @@
-const API = chrome || browser
-
-document.querySelectorAll('div.css-w94bws')
-  .forEach(e => {
-    const btn = document.createElement('button')
-    btn.innerHTML = 'Chamar'
-    e.appendChild(btn)
-  })
+// const API = chrome || browser
 
 // API.runtime.onInstalled.addListener(() => {
 //   API.action.setBadgeText({
