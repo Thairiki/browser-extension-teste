@@ -1,6 +1,6 @@
 const API = chrome || browser
 
-try {
+API.runtime.onInstalled.addListener(async () => {
   await API.scripting
     .registerContentScripts([{
       id: "session-script",
@@ -10,26 +10,8 @@ try {
       runAt: "document_start",
     }])
     .then(() => console.log("registration complete"))
-
-} catch (err) {
-  console.error(`failed to register content scripts: ${err}`)
-}
-
-// API.scripting
-// .updateContentScripts([{
-//   id: "session-script",
-//   excludeMatches: ["*://admin.example.com/*"],
-// }])
-// .then(() => console.log("registration updated"))
-
-// API.scripting
-//   .getRegisteredContentScripts()
-//   .then(scripts => console.log("registered content scripts", scripts))
-
-// API.scripting
-//   .unregisterContentScripts({ ids: ["session-script"] })
-//   .then(() => console.log("un-registration complete"));
-
+    .catch(err => console.error(`failed to register content scripts: ${err}`))
+})
 
 // API.runtime.onInstalled.addListener(() => {
 //   API.action.setBadgeText({
