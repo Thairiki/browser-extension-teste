@@ -21,7 +21,6 @@
   "permissions": ["activeTab", "scripting"],
   "content_scripts": [
     {
-      "matches": ["*"],
       "js": ["content-script.js"]
     }
   ]
