@@ -5,7 +5,7 @@ API.scripting
     id: "session-script",
     js: ["/js/injectButton.js"],
     persistAcrossSessions: false,
-    matches: ["*"],
+    matches: ["<all_urls>"],
     runAt: "document_start",
   }])
   .then(() => console.log("registration complete"))
