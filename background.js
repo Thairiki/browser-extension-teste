@@ -1,30 +1,34 @@
 const API = chrome || browser
 
-API.scripting
-  .registerContentScripts([{
-    id: "session-script",
-    js: ["/js/injectButton.js"],
-    persistAcrossSessions: false,
-    matches: ["*://*/*"],
-    runAt: "document_start",
-  }])
-  .then(() => console.log("registration complete"))
-  .catch((err) => console.warn("unexpected error", err))
+try {
+  await API.scripting
+    .registerContentScripts([{
+      id: "session-script",
+      js: ["/js/injectButton.js"],
+      persistAcrossSessions: false,
+      matches: ["<all_urls>"],
+      runAt: "document_start",
+    }])
+    .then(() => console.log("registration complete"))
 
-API.scripting
-.updateContentScripts([{
-  id: "session-script",
-  excludeMatches: ["*://admin.example.com/*"],
-}])
-.then(() => console.log("registration updated"))
+} catch (err) {
+  console.error(`failed to register content scripts: ${err}`)
+}
 
-API.scripting
-  .getRegisteredContentScripts()
-  .then(scripts => console.log("registered content scripts", scripts))
+// API.scripting
+// .updateContentScripts([{
+//   id: "session-script",
+//   excludeMatches: ["*://admin.example.com/*"],
+// }])
+// .then(() => console.log("registration updated"))
 
-API.scripting
-  .unregisterContentScripts({ ids: ["session-script"] })
-  .then(() => console.log("un-registration complete"));
+// API.scripting
+//   .getRegisteredContentScripts()
+//   .then(scripts => console.log("registered content scripts", scripts))
+
+// API.scripting
+//   .unregisterContentScripts({ ids: ["session-script"] })
+//   .then(() => console.log("un-registration complete"));
 
 
 // API.runtime.onInstalled.addListener(() => {
