@@ -7,6 +7,7 @@
 //   })
 // }
 
+console.log('injecting buttons')
 document.querySelectorAll('div.css-w94bws')
   .forEach(e => {
     const btn = document.createElement('button')
