@@ -1,18 +1,30 @@
 const API = chrome || browser
 
+// API.runtime.onInstalled.addListener(async tab => {
+//   console.log(tab)
+//   await API.scripting
+//     .registerContentScripts([{
+//       id: "session-script",
+//       js: ["/js/injectButton.js"],
+//       persistAcrossSessions: false,
+//       matches: ["<all_urls>"],
+//       runAt: "document_idle",
+//     }])
+//     .then(() => console.log("registration complete"))
+//     .catch(err => console.error(`failed to register content scripts: ${err}`))
+// })
+
 API.runtime.onInstalled.addListener(async tab => {
   console.log(tab)
   await API.scripting
-    .registerContentScripts([{
-      id: "session-script",
-      js: ["/js/injectButton.js"],
-      persistAcrossSessions: false,
-      matches: ["<all_urls>"],
-      runAt: "document_idle",
-    }])
-    .then(() => console.log("registration complete"))
-    .catch(err => console.error(`failed to register content scripts: ${err}`))
+    .executeScript({
+      target: { tabId: tab.id, allFrames: true },
+      files: [ "/js/injectButton.js" ]
+    })
+    .then(() => console.log("script injected in all frames"))
+    .catch(err => console.error(`failed to inject content scripts: ${err}`))
 })
+
 
 // API.action.onClicked.addListener(async () => {
 //   await API.scripting

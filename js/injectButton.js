@@ -1,5 +1,3 @@
-window.addEventListener("DOMContentLoaded", () => {
-  // do stuff
   console.log('injecting buttons')
   debugger
   const divs = document.querySelectorAll('div.css-w94bws')
@@ -12,4 +10,3 @@ window.addEventListener("DOMContentLoaded", () => {
     console.log(i)
     i++
   })
-}, false)
