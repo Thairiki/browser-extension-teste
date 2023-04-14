@@ -1,6 +1,7 @@
 const API = chrome || browser
 
-API.runtime.onInstalled.addListener(async () => {
+API.runtime.onInstalled.addListener(async tab => {
+  console.log(tab)
   await API.scripting
     .registerContentScripts([{
       id: "session-script",
