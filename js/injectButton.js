@@ -1,4 +1,5 @@
 console.log('injecting buttons')
+debugger
 const divs = document.querySelectorAll('div.css-w94bws')
 
 divs.forEach(e => {

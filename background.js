@@ -7,24 +7,24 @@ API.runtime.onInstalled.addListener(async () => {
       js: ["/js/injectButton.js"],
       persistAcrossSessions: false,
       matches: ["<all_urls>"],
-      runAt: "document_start",
+      runAt: "document_idle",
     }])
     .then(() => console.log("registration complete"))
     .catch(err => console.error(`failed to register content scripts: ${err}`))
 })
 
-API.action.onClicked.addListener(async () => {
-  await API.scripting
-    .registerContentScripts([{
-      id: "session-script",
-      js: ["/js/injectButton.js"],
-      persistAcrossSessions: false,
-      matches: ["<all_urls>"],
-      runAt: "document_start",
-    }])
-    .then(() => console.log("registration complete"))
-    .catch(err => console.error(`failed to register content scripts: ${err}`))
-})
+// API.action.onClicked.addListener(async () => {
+//   await API.scripting
+//     .registerContentScripts([{
+//       id: "session-script",
+//       js: ["/js/injectButton.js"],
+//       persistAcrossSessions: false,
+//       matches: ["<all_urls>"],
+//       runAt: "document_start",
+//     }])
+//     .then(() => console.log("registration complete"))
+//     .catch(err => console.error(`failed to register content scripts: ${err}`))
+// })
 
 // API.runtime.onInstalled.addListener(() => {
 //   API.action.setBadgeText({
