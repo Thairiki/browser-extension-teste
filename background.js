@@ -15,14 +15,15 @@ const API = chrome || browser
 // })
 
 API.runtime.onInstalled.addListener(async tab => {
-  console.log(tab)
-  await API.scripting
-    .executeScript({
-      target: { tabId: tab.id, allFrames: true },
-      files: [ "/js/injectButton.js" ]
-    })
-    .then(() => console.log("script injected in all frames"))
-    .catch(err => console.error(`failed to inject content scripts: ${err}`))
+  API.tabs.query({ active: true }, async tabs => {
+    await API.scripting
+      .executeScript({
+        target: { tabId: tabs[0].id, allFrames: true },
+        files: [ "/js/injectButton.js" ]
+      })
+      .then(() => console.log("script injected in all frames"))
+      .catch(err => console.error(`failed to inject content scripts: ${err}`))
+  })
 })
 
 
