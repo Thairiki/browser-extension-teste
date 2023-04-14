@@ -14,18 +14,17 @@ const API = chrome || browser
 //     .catch(err => console.error(`failed to register content scripts: ${err}`))
 // })
 
-API.runtime.onInstalled.addListener(async tab => {
-  API.tabs.query({ active: true }, async tabs => {
+API.tabs.onUpdated.addListener( async (tabId, changeInfo, tab) => {
+  if (changeInfo.status == 'complete' && tab.active) {
     await API.scripting
-      .executeScript({
-        target: { tabId: tabs[0].id, allFrames: true },
-        files: [ "/js/injectButton.js" ]
-      })
-      .then(() => console.log("script injected in all frames"))
-      .catch(err => console.error(`failed to inject content scripts: ${err}`))
-  })
+    .executeScript({
+      target: { tabId, allFrames: true },
+      files: [ "/js/injectButton.js" ]
+    })
+    .then(() => console.log("script injected in all frames"))
+    .catch(err => console.error(`failed to inject content scripts: ${err}`))
+  }
 })
-
 
 // API.action.onClicked.addListener(async () => {
 //   await API.scripting
