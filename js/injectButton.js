@@ -11,7 +11,7 @@
       btn.addEventListener('click', () => {
         alert(nome.innerHTML);
       })
-      localBotao.appendChild(btn)
       console.log(item)
+      localBotao.appendChild(btn)
     })
   }, 3000)
