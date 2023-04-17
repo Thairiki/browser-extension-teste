@@ -1,9 +1,8 @@
   console.log('injecting buttons')
   
   setTimeout(() => {
-    const items = document.querySelectorAll('css-50kdbq')
-    
-    
+    const items = document.querySelectorAll('div.css-50kdbq')
+
     items.forEach(item => {
       const nome = item.querySelector('css-11zrb1w')
       const localBotao = item.querySelector('css-w94bws')
