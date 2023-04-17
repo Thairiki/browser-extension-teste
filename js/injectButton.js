@@ -8,10 +8,10 @@
       const localBotao = item.querySelector('div.css-w94bws')
       const btn = document.createElement('button')
       btn.innerText = 'Chamar'
+      console.log(nome)
       btn.addEventListener('click', () => {
-        alert(nome.innerHTML);
+        alert(nome.innerText);
       })
-      console.log(item)
       localBotao.appendChild(btn)
     })
   }, 3000)
