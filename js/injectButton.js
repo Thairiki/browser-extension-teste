@@ -7,7 +7,7 @@
       const nome = item.querySelector('div.css-11zrb1w')
       const localBotao = item.querySelector('div.css-w94bws')
       const btn = document.createElement('button')
-      btn.innerHTML = 'Chamar'
+      btn.innerText = 'Chamar'
       btn.addEventListener('click', () => {
         alert(nome.innerHTML);
       })
