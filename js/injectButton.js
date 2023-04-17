@@ -1,15 +1,18 @@
   console.log('injecting buttons')
   
   setTimeout(() => {
-    const test = document.querySelectorAll('css-50kdbq')
-    const divs = document.querySelectorAll('div.css-w94bws')
-    const nomes = document.querySelectorAll('css-11zrb1w')
-
-    console.log(test)
+    const items = document.querySelectorAll('css-50kdbq')
     
-    divs.forEach(e => {
+    
+    items.forEach(item => {
+      const nome = item.querySelector('span.css-11zrb1w')
+      const localBotao = item.querySelector('div.css-w94bws')
       const btn = document.createElement('button')
       btn.innerHTML = 'Chamar'
-      e.appendChild(btn)
+      btn.addEventListener('click', () => {
+        alert(nome.innerHTML);
+      })
+      localBotao.appendChild(btn)
+      console.log(item)
     })
   }, 3000)
