@@ -1,7 +1,11 @@
-  console.log('injecting buttons')
-  
-  setTimeout(() => {
-    const items = document.querySelectorAll('div.css-50kdbq')
+
+const target = document.querySelector('div.css-1p0w3oq')
+const items = document.querySelectorAll('div.css-50kdbq')
+
+const observer = new MutationObserver(mutations => {
+  if (document.contains(items)) {
+    console.log("Ready!")
+    console.log('injecting buttons')
 
     items.forEach(item => {
       const nome = item.querySelector('span.css-11zrb1w')
@@ -10,8 +14,13 @@
       btn.innerText = 'Chamar'
       console.log(nome)
       btn.addEventListener('click', () => {
-        alert(nome.innerText);
+        alert(nome.innerText)
       })
       localBotao.appendChild(btn)
     })
-  }, 3000)
+
+    // observer.disconnect()
+  }
+  })
+  
+  observer.observe(target, { attributes: false, childList: true, characterData: false, subtree: true })
