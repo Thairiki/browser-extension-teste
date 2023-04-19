@@ -15,9 +15,15 @@
       "128": "icons/icon128.png"
     }
   },
-  "background": {
-    "service_worker": "background.js"
-  },
+  "content_scripts": [
+    {
+      "js": ["js/injectButton.js"],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+    }
+  ],
   "permissions": ["activeTab", "scripting", "tabs"],
   "host_permissions": ["http://*/*", "https://*/*"]
 }

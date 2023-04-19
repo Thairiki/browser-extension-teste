@@ -1,12 +1,14 @@
+setTimeout(() => {
+  console.log("Ready!")
 
-const target = document.querySelector('div.css-1p0w3oq')
-const items = document.querySelectorAll('div.css-50kdbq')
+  const target = document.querySelector('#root > .css-1svsvwq > .css-1ylu0bo > .css-10fdisw > .css-7jfwpc > .css-9o6z15 > .css-j7qwjs').querySelectorAll('.css-1p0w3oq')[1]
+  const items = document.querySelectorAll('div.css-50kdbq')
 
-const observer = new MutationObserver(mutations => {
-  if (document.contains(items)) {
-    console.log("Ready!")
+  console.log(target)
+  console.log(document.contains(items[0]))
+    
+  if (document.contains(items[0])) {
     console.log('injecting buttons')
-
     items.forEach(item => {
       const nome = item.querySelector('span.css-11zrb1w')
       const localBotao = item.querySelector('div.css-w94bws')
@@ -17,9 +19,5 @@ const observer = new MutationObserver(mutations => {
       })
       localBotao.appendChild(btn)
     })
-
-    // observer.disconnect()
   }
-  })
-  
-  observer.observe(target, { attributes: false, childList: true, characterData: false, subtree: true })
+}, 500)
